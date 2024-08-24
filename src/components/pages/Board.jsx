@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect} from 'react';
+import { CirclePlus,SquarePlus,  CircleX, } from 'lucide-react';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Card from '@/components/ui/Card'
 import Box from '@/components/ui/Box'
+import { Button } from '@/components/ui/button';
 
 
 const DATA = [
@@ -26,6 +28,7 @@ const DATA = [
 
 const Baord = () => {
     const [stores, setStores] = useState(DATA);
+    const [boxes, setBoxes] = useState([]);
 
     const handleDragAndDrop = (results) => {
         const { source, destination, type } = results;
@@ -84,25 +87,41 @@ const Baord = () => {
         setStores(newStores);
       };
 
+      const AddBoxHandler = () => {
+        const newBox = {
+          id: Date.now(), 
+          component: <Box />
+        };
+        setBoxes((old) => [...old, newBox]);
+      }
+      const closeBoxHandler = (id) => {
+        const updatedBoxes = boxes.filter((box) => box.id !== id);
+        setBoxes(updatedBoxes);
+      }
   return (
    
     <div className="grid grid-cols-12 ">
-    
-      <div className="col-span-3 bg-gray-200 min-h-screen  text-white px-6 pt-[100px]">
-          <Card/>
-          <Card/>
-          <Card/>
-      </div>
-     
-
-      <div className="col-span-5 h-screen "></div>
-
-      <div className="flex-col gap-3  items-center col-span-4 px-6 flex justify-center pt-[120px] bg-gray-200 min-h-screen">
-        <Box/>
-        <Box/>
-        <Box/>
+    <div className="col-span-3 bg-gray-200 min-h-screen  text-white px-6 pt-[100px]">
+      <Card/>
+      <Card/>
+      <Card/>
+    </div>
+    <div className="col-span-5  h-screen ">
+    <div className='flex justify-center mt-[120px]'>
+      <Box rightIcon={true}/>
+    </div>
+    </div>
+    <div className='pt-[100px] col-span-4 bg-gray-200 flex flex-col'>
+      <Button onClick={AddBoxHandler} variant="ghost" className='ml-[50px] gap-2 mb-4 self-end flex justify-end mr-[40px]'>
+        <SquarePlus color='purple'/> Add box
+      </Button>
+      <div className="flex-col gap-3  items-center col-span-4 px-6 flex bg-gray-200 min-h-screen">
+        {boxes.map((box) => (
+          <Box key={box.id} rightIcon={false} closeBoxHandler={() => closeBoxHandler(box.id)} />
+        ))}
       </div>
     </div>
+  </div>
    
   );
 };

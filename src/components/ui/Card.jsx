@@ -1,4 +1,4 @@
-import { CirclePlus, CircleX} from 'lucide-react';
+import { CirclePlus, CircleX, } from 'lucide-react';
 import { Button } from '@/components/ui/button'
 
 const Card = () => {
