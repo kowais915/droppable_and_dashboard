@@ -1,32 +1,42 @@
 import { SquareX, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import Card from '@/components/ui/Card'
 
-const Box = ( props ) => {
-    const { closeBoxHandler,  rightIcon } = props;
+const Box = (props) => {
+    const {unFocusedCol, data, id, closeBoxHandler, rightIcon, closeIcon, moveBox, onRemoveCard } = props;
+    
     return (
-        <div className=" bg-white h-[420px] w-[420px] border-2 border-gray-300 mb-2">
-            <div className='flex justify-between'>
-                <div className='flex gap-2'>
+        <div className="bg-white h-[420px] w-[420px] border-2 border-gray-300 mb-2 overflow-y-auto">
+            <div className='flex justify-between p-4'>
+                <div className='flex gap-2 items-center'>
+                    <Button variant="ghost" onClick={moveBox}>
+                        {rightIcon ? <ChevronRight /> : <ChevronLeft />}
+                    </Button>
                     <div>
-
-                    {rightIcon ?  <ChevronRight/> : <ChevronLeft/>}
-                    </div> 
-                    <div>
-                        name
+                        Box {id}
                     </div>
                 </div>
                 <div>
-                    <Button variant={'ghost'} onClick={() => closeBoxHandler()}>
-                      <SquareX color='red'/>
+                    {closeIcon && 
+                    <Button variant='ghost' onClick={() => closeBoxHandler(id)}>
+                        <SquareX color='red'/>
                     </Button>
-
-
+                    }
                 </div>
-
+            </div>
+            <div className='flex flex-col px-7 mt-4'>
+                {data?.map((card) => (
+                    <Card 
+                        key={card.id} 
+                        {...card} 
+                        closeIcon={true} 
+                        onRemove={() => onRemoveCard(card)}
+                        unFocusedCol={unFocusedCol}
+                    />
+                ))}
             </div>
         </div>
-      );
+    );
 }
- 
+
 export default Box;
