@@ -239,11 +239,11 @@ const cards = [
     title: "Task 3",
     src: "",
     ctaText: "Demo",
-    ctaLink: "",
+    ctaLink: "/gantt-chart",
     content: () => {
       return (
         <p>
-         This is the bonus task. The charting library is to be decided        </p>
+         This is the bonus task. I am using ApexCharts and plain tailwind css. I have added an extra timeline chart to leverage the capabilities of charting libraries.       </p>
       );
     },
   }
