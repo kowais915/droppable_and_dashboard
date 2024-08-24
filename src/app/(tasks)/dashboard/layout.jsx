@@ -1,9 +1,9 @@
 import Sidebar from "../../../components/ui/Sidebar";
 const DashboardLayout = ({ children }) => {
     return (  
-        <div className="flex gap-7 w-1/4">
+        <div className="flex gap-7 ">
                 <Sidebar/>
-                { children}
+                <div className="w-full">{ children}</div>
         </div>
     );
 }
