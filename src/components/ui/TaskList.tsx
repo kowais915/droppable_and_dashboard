@@ -210,11 +210,11 @@ const cards = [
     title: "Task 1",
     src: "/digitlabs.png",
     ctaText: "Demo",
-    ctaLink: "",
+    ctaLink: "/board",
     content: () => {
       return (
         <p>
-            This is the solution to task 1. I am using react beautiful dnd for this task and shadcn UI.
+            This is the solution to task 1. I am using react dnd for this task and shadcn UI.
         </p>
       );
     },
