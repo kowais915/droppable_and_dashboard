@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import Card from '@/components/ui/Card'
 
 const Box = (props) => {
-    const {unFocusedCol, data, id, closeBoxHandler, rightIcon, closeIcon, moveBox, onRemoveCard } = props;
+    const {unFocusedCol, data, id, closeBoxHandler, rightIcon, closeIcon, moveBox, onRemoveCard, children } = props;
     
     return (
         <div className="bg-white h-[420px] w-[420px] border-2 border-gray-300 mb-2 overflow-y-auto">
@@ -25,7 +25,7 @@ const Box = (props) => {
                 </div>
             </div>
             <div className='flex flex-col px-7 mt-4'>
-                {data?.map((card) => (
+                {children ? children : data?.map((card) => (
                     <Card 
                         key={card.id} 
                         {...card} 
