@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 ## Deployment
-
+The app is deployed [here](https://droppable-and-dashboard.vercel.app/)
 ## Tasks
 You can navigate using the three cards on the root page.
 
